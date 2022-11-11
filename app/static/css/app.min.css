@@ -1,0 +1,26 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 2em;
+}
+
+.timer-box {
+  background-color: lightgray;
+  border-radius: 2px;
+  padding: 1em;
+  height: 25em;
+  width: 25em;
+}
+
+.separator {
+  width: 25em;
+}
+
+.footer {
+  font-family: "Monaco", "Lucida Console", Monospace;
+  margin: 2em;
+  font-size: 1em;
+}

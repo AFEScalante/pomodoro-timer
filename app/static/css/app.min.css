@@ -10,17 +10,22 @@
 .timer-box {
   background-color: lightgray;
   border-radius: 2px;
-  padding: 1em;
-  height: 25em;
-  width: 25em;
+  height: 35em;
+}
+
+.buttons-timer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1em;
+  width: 35em;
 }
 
 .separator {
-  width: 25em;
+  width: 35em;
 }
 
 .footer {
-  font-family: "Monaco", "Lucida Console", Monospace;
+  font-family: "Monaco", "Lucida Console", "monospace";
   margin: 2em;
   font-size: 1em;
 }

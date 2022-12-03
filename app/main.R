@@ -1,6 +1,7 @@
 box::use(
   shiny[...],
   bslib[...],
+  shinyjs[...],
 )
 
 box::use(
@@ -14,6 +15,7 @@ ui <- function(id) {
   ns <- NS(id)
   fluidPage(
     theme = bs_theme(bootswatch = "simplex"),
+    useShinyjs(),
     div(
       class = "main-container",
       header$ui(ns("app-header")),

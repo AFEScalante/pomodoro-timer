@@ -8,16 +8,67 @@
 }
 
 .timer-box {
-  background-color: lightgray;
-  border-radius: 2px;
-  height: 35em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #bc4749;
+  border-radius: 15px;
+  transition: 0.7s background-color;
+  height: 20em;
+  width: 30em;
+  padding: 10px;
+}
+
+.red {
+  background-color: #bc4749;
+}
+
+.green {
+  background-color: #2a9d8f;
+}
+
+.blue {
+  background-color: #219ebc;
 }
 
 .buttons-timer {
   display: flex;
   justify-content: space-evenly;
   margin: 1em;
-  width: 35em;
+  width: 28em;
+}
+
+.buttons-timer .button-method {
+  background-color: none !important;
+  color: white;
+  opacity: 1 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.buttons-timer .selected {
+  background: #6c757d !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  border-radius: 10px;
+}
+
+#app-timer-timer_box-timer_control {
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+}
+
+.time-value {
+  color: white;
+  font-size: 7em;
+}
+
+.execution-button {
+  width: 100%;
+}
+
+.btn-control {
+  font-size: 2em;
 }
 
 .separator {

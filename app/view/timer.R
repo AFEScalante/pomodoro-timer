@@ -9,10 +9,7 @@ box::use(
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  div(
-    class = "timer-box",
-    timer_box$ui(ns("timer_box"))
-  )
+  timer_box$ui(ns("timer_box"))
 }
 
 #' @export

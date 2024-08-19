@@ -1,0 +1,37 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh; 
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff9e6;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app {
+  width: 70vw;
+}
+
+.task-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+}
+
+/* Styling Shiny inputs */
+.selectize-input {
+  width: auto !important;
+  background: none !important;
+  border: none !important;
+}
+
+.selectize-control.single .selectize-input:not(.no-arrow):after {
+  display: none !important;
+}

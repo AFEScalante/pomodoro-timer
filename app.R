@@ -5,7 +5,12 @@ source("R/task.R")
 
 ui <- fluidPage(
   shinyjs::useShinyjs(),
-  includeCSS("www/style.css"),
+  tags$head(
+    tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Lexend Mega:wght@700&display=swap"),
+    tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Public Sans:wght@400;700;800&display=swap"),
+    tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
+  ),
   div(
     class = "app",
     header_ui("header"),
@@ -17,4 +22,4 @@ server <- function(input, output, server) {
   header_server("header")
 }
 
-shinyApp(ui, server)
+shiny::shinyApp(ui, server)

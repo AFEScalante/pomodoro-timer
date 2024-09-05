@@ -1,0 +1,18 @@
+@import url("global.css");
+@import url("header.css");
+@import url("tasks.css");
+@import url("timerBox.css");
+@import url("claimPrize.css");
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  overflow: hidden;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-public-sans);
+}

@@ -4,9 +4,11 @@ task_ui <- function(id) {
   div(
     class = "task-container",
     span("I want to focus on "),
-    selectizeInput(ns("task"), choices = "", label = NULL, options = list(create = TRUE, placeholder = "type your task here")),
+    textInput(ns("task"), label = NULL, placeholder = "type your task here") |> 
+      tagAppendAttributes(class = "task-desc"),
     span("for "),
-    numericInput(ns("iterations"), label = NULL, value = 1, min = 1, max = 99),
+    numericInput(ns("iterations"), label = NULL, value = 1, min = 1, max = 99) |> 
+      tagAppendAttributes(class = "task-iters"),
     span(" iterations")
   )
 }

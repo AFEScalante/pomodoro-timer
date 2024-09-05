@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 4rem;
+  margin: 0;
+  line-height: normal;
+  background-color: #fff9e6;
+  min-height: 100vh;
+}
+
+:root {
+  /* fonts */
+  --font-public-sans: "Public Sans";
+  --font-archivo: Archivo;
+  --font-lexend-mega: "Lexend Mega";
+
+  /* font sizes */
+  --font-size-base: 1.4rem;
+  --font-size-sm: 0.975rem;
+  --font-size-77xl: 6rem;
+  --font-size-10xl: 1.813rem;
+  --font-size-29xl: 2.3rem;
+
+  /* Colors */
+  --color-black: #000;
+  --color-orange: #ffb904;
+  --color-darkslategray: #333;
+  --color-tomato: #ff5052;
+  --color-mediumpurple: #c4a1ff;
+  --color-green: #90ee90;
+  --color-blue: #70cdde;
+
+  /* Gaps */
+  --gap-17xl: 2.25rem;
+  --gap-lg: 1.125rem;
+
+  /* Paddings */
+  --padding-14xl: 2.062rem;
+  --padding-xl: 1.25rem;
+  --padding-4xs: 0.562rem;
+  --padding-xs: 0.75rem;
+  --padding-4xl: 1.437rem;
+  --padding-3xs: 0.625rem;
+  --padding-10xs: 0.187rem;
+  --padding-6xl: 1.562rem;
+  --padding-13xl: 2rem;
+  --padding-5xs: 0.5rem;
+  --padding-8xs: 0.312rem;
+
+  /* Borders */
+  --br-8xs: 5px;
+  --br-3xl: 22px;
+  --border: solid 1vmin #000;
+  --border-small: solid 0.65vmin #000;
+}

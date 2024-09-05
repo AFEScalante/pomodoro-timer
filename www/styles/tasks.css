@@ -1,0 +1,44 @@
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-container span {
+  text-align: center;
+}
+
+.task-container .shiny-input-container:not(.shiny-input-container-inline) {
+  width: auto !important;
+}
+
+.task-container .task-desc input {
+  width: auto !important;
+  font-size: var(--font-size-base);
+  border: none;
+  background: none;
+}
+
+.task-container .task-desc .form-control {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  color: var(--color-tomato);
+  font-weight: 700;
+}
+
+.task-container .form-group {
+  margin-bottom: 0 !important;
+}
+
+.task-container .form-control {
+  text-align: center;
+}
+
+.task-iters .form-control {
+  background: none;
+  border: 1px solid #000;
+  padding: 8px;
+  font-size: inherit;
+  box-shadow: 1px 2px 0 1px #000;
+}

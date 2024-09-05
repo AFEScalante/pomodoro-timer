@@ -1,17 +1,15 @@
 header_ui <- function(id) {
   ns <- NS(id)
 
-  div(
+  tags$header(
     class = "header",
-    span("Pomodoro Timer"),
-    actionButton(inputId = ns("edit"), icon = icon("pencil"), label = "")
+    a(class = "pomodoro-timer", "Pomodoro Timer"),
+    img(class = "editbutton-icon", src = "images/editbutton.svg")
   )
 }
 
 header_server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    observeEvent(input$edit, {
-      print("Editing...")
-    })
+
   })
 }

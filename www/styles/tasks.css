@@ -1,48 +1,12 @@
-@import url("global.css");
-
-.app {
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  overflow: hidden;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  font-size: var(--font-size-base);
-  color: var(--color-black);
-  font-family: var(--font-public-sans);
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8rem;
-  align-items: center;
-}
-
-.header .editbutton-icon {
-  height: 3.5rem;
-  width: 3.5rem;
-  border: none;
-  cursor: pointer;
-}
-
-.header a {
-  text-decoration: none;
-  position: relative;
-  letter-spacing: -0.2em;
-  font-weight: 700;
-  color: inherit;
-  font-size: var(--font-size-29xl);
-  font-family: var(--font-lexend-mega);
-}
-
 .task-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.task-container span {
+  text-align: center;
 }
 
 .task-container .shiny-input-container:not(.shiny-input-container-inline) {
@@ -77,8 +41,4 @@
   padding: 8px;
   font-size: inherit;
   box-shadow: 1px 2px 0 1px #000;
-}
-
-.task-container span {
-  text-align: center;
 }

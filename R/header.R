@@ -3,8 +3,8 @@ header_ui <- function(id) {
 
   tags$header(
     class = "header",
-    tags$a(class = "pomodoro-timer", "Pomodoro Timer"),
-    tags$img(class = "editbutton-icon", src = "images/editbutton.svg")
+    a(class = "pomodoro-timer", "Pomodoro Timer"),
+    img(class = "editbutton-icon", src = "images/editbutton.svg")
   )
 }
 

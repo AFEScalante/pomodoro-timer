@@ -29,6 +29,8 @@ body {
   --color-darkslategray: #333;
   --color-tomato: #ff5052;
   --color-mediumpurple: #c4a1ff;
+  --color-green: #90ee90;
+  --color-blue: #70cdde;
 
   /* Gaps */
   --gap-17xl: 2.25rem;
@@ -47,7 +49,9 @@ body {
   --padding-5xs: 0.5rem;
   --padding-8xs: 0.312rem;
 
-  /* Border radiuses */
+  /* Borders */
   --br-8xs: 5px;
   --br-3xl: 22px;
+  --border: solid 1vmin #000;
+  --border-small: solid 0.65vmin #000;
 }

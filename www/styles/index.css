@@ -1,8 +1,4 @@
 @import url("global.css");
-@import url("header.css");
-@import url("tasks.css");
-@import url("timerBox.css");
-@import url("claimPrize.css");
 
 .app {
   display: flex;
@@ -15,4 +11,179 @@
   font-size: var(--font-size-base);
   color: var(--color-black);
   font-family: var(--font-public-sans);
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.header .editbutton-icon {
+  height: 3.5rem;
+  width: 3.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.header a {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: -0.2em;
+  font-weight: 700;
+  color: inherit;
+  font-size: var(--font-size-29xl);
+  font-family: var(--font-lexend-mega);
+}
+
+/* TASKS */
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-container span {
+  text-align: center;
+}
+
+.task-container .shiny-input-container:not(.shiny-input-container-inline) {
+  width: auto !important;
+}
+
+.task-container .task-desc input {
+  width: auto !important;
+  font-size: var(--font-size-base);
+  border: none;
+  background: none;
+}
+
+.task-container .task-desc .form-control {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  color: var(--color-tomato);
+  font-weight: 700;
+}
+
+.task-container .form-group {
+  margin-bottom: 0 !important;
+}
+
+.task-container .form-control {
+  text-align: center;
+}
+
+.task-iters .form-control {
+  background: none;
+  border: 1px solid #000;
+  padding: 8px;
+  font-size: inherit;
+  box-shadow: 1px 2px 0 1px #000;
+}
+
+/* TIMER */
+.timer-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 50rem;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: 1px 2px 0 1px #000;
+  border: 1px solid var(--color-black);
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 2rem;
+  margin-top: 3.5rem;
+}
+
+.clock {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+}
+
+.clock .shiny-text-output {
+  font-size: 8rem;
+  padding: 2.5rem;
+  border: solid 1px var(--color-black);
+  border-radius: 2rem;
+  font-family: var(--font-lexend-mega);
+  box-shadow: 1px 2px 0 1px #000;
+}
+
+.clock .timer-separator {
+  
+}
+
+/* Buttons */
+.start-btn {
+  background-color: var(--color-mediumpurple);
+  width: 18rem;
+  border: 1px solid #000;
+  padding: 4px;
+  box-shadow: 1px 2px 0 1px #000;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.timer-btn {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 600;
+  border: solid 1px #000;
+  border-radius: 3rem;
+  width: 9rem;
+  padding: 8px;
+  font-size: 12px;
+  margin-left: 1rem;
+}
+
+.tomato-bg {
+  background-color: var(--color-tomato);
+}
+
+.green-bg {
+  background-color: #90ee90;
+}
+
+.blue-bg {
+  background-color: #70cdde;
+}
+
+/* CLAIM PRIZE */
+.prize {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.claim-btn {
+  background-color: var(--color-orange);
+  width: 23rem;
+  border: 1px solid #000;
+  padding: 4px;
+  box-shadow: 1px 2px 0 1px #000;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.prize .shiny-text-output {
+  margin-top: 3rem;
+  padding: 1.2rem;
+  color: #fff;
+  border: 1px solid #000;
+  background: #3300ff;
+  box-shadow: 1px 2px 0 1px #000;
+  font-family: monospace;
+  max-width: 50rem;
+  text-align: center;
+  font-size: smaller;
 }

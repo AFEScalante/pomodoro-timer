@@ -3,9 +3,6 @@ library(httr)
 library(glue)
 library(shinyjs)
 
-# Loading managers
-source("R/timer_manager.R")
-
 # Loading Shiny modules
 source("R/header.R")
 source("R/timer.R")
@@ -13,8 +10,6 @@ source("R/task.R")
 source("R/prize.R")
 
 source("R/utils.R")
-
-timer_manager <- TimerManager$new()
 
 ui <- fluidPage(
   useShinyjs(),

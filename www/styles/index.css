@@ -99,51 +99,76 @@
   align-self: center;
   padding: 2rem;
   margin-top: 3.5rem;
+  background-color: #f8f8f8;
 }
 
-.clock {
-  display: flex;
-  gap: 2rem;
-  margin: 1rem;
-}
-
-.clock .shiny-text-output {
-  font-size: 8rem;
-  padding: 2.5rem;
-  border: solid 1px var(--color-black);
-  border-radius: 2rem;
+.timer-display {
   font-family: var(--font-lexend-mega);
-  box-shadow: 1px 2px 0 1px #000;
+  font-size: 6rem;
+  font-weight: bold;
+  color: #000;
 }
 
-.clock .timer-separator {
-  
-}
-
-/* Buttons */
-.start-btn {
-  background-color: var(--color-mediumpurple);
-  width: 18rem;
-  border: 1px solid #000;
-  padding: 4px;
-  box-shadow: 1px 2px 0 1px #000;
-  text-transform: capitalize;
-  font-weight: 600;
+.timer-controls {
+  display: flex;
+  gap: 1rem;
 }
 
 .timer-btn {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: 600;
-  border: solid 1px #000;
-  border-radius: 3rem;
-  width: 9rem;
-  padding: 8px;
-  font-size: 12px;
-  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: 6px 6px 0 0 #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none; /* Removes the orange outline */
 }
 
+/* Play button */
+.timer-btn.play-btn {
+  background-color: #4CAF50; /* Green for play */
+  color: #fff;
+}
+
+/* Pause button */
+.timer-btn.pause-btn {
+  background-color: #FFEB3B; /* Yellow for pause */
+  color: #000;
+}
+
+/* Stop button */
+.timer-btn.stop-btn {
+  background-color: #F44336; /* Red for stop */
+  color: #fff;
+}
+
+/* Minimal hover effect */
+.timer-btn:hover {
+  box-shadow: 6px 6px 0 0 #000; /* Slight shadow */
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* When button is pressed down (but not yet released) */
+.timer-btn:active {
+  transform: translateY(6px); /* Moves down completely */
+  box-shadow: none; /* No shadow to mimic pressed button */
+}
+
+/* After releasing (button comes up slightly) */
+.timer-btn.pressed {
+  transform: translateY(2px); /* Comes up a little after being released */
+  box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+}
+
+/* Focus state to remove outline */
+.timer-btn:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+
+/* Buttons */
 .tomato-bg {
   background-color: var(--color-tomato);
 }
@@ -157,22 +182,66 @@
 }
 
 /* CLAIM PRIZE */
+.claim-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 23rem;
+  border: 3px solid #000;
+  padding: 1rem;
+  box-shadow: 5px 5px 0 0 #000;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  z-index: 1; /* Ensures text is on top */
+  color: #000;
+}
+
+/* Hover effect */
+.claim-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+/* Pressed effect */
+.claim-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 #000;
+}
+
+/* Progress bar */
+.claim-btn::before {
+  background-color: var(--color-orange); /* Color of the progress bar */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Ensures it stays behind the text */
+  transition: transform 0.3s ease;
+  transform: translateX(calc(-100% + (var(--progress, 0) * 100%)));
+}
+
+.claim-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Enhance text visibility when progress bar passes over */
+.claim-btn::before {
+  mix-blend-mode: multiply; /* Ensures progress bar and text blend well */
+}
+
+/* PRIZE TEXT */
 .prize {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
-}
-
-.claim-btn {
-  background-color: var(--color-orange);
-  width: 23rem;
-  border: 1px solid #000;
-  padding: 4px;
-  box-shadow: 1px 2px 0 1px #000;
-  text-transform: capitalize;
-  font-weight: 600;
 }
 
 .prize .shiny-text-output {

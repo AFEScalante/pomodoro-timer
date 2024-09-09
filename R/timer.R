@@ -6,9 +6,9 @@ timer_ui <- function(id) {
     div(class = "timer-container",
       div(
         class = "timer-buttons",
-        tags$button("pomodoro", class = "timer-btn tomato-bg"),
-        tags$button("short break", class = "timer-btn green-bg"),
-        tags$button("long break", class = "timer-btn blue-bg")
+        actionButton(ns("pomodoro"), label = "pomodoro", class = "menu-btn tomato-bg pressed"),
+        actionButton(ns("short_break"), label = "break", class = "menu-btn green-bg"),
+        actionButton(ns("long_break"), label = "long break", class = "menu-btn blue-bg")
       ),
       div(class = "timer-display", textOutput(ns("time_display"))),
       div(class = "timer-controls",
@@ -23,7 +23,6 @@ timer_ui <- function(id) {
 timer_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    timer <- TimerState$new(20)
 
     # Render time display
     output$time_display <- renderText(timer$time_string())
@@ -32,6 +31,22 @@ timer_server <- function(id) {
     observe({
       invalidateLater(1000, session)
       timer$tick()
+    })
+
+    # Pomodoro controls
+    observeEvent(input$pomodoro, {
+      set_pressed_button(ns("pomodoro"), class = "menu-btn")
+      timer$set_mode("pomodoro")
+    })
+
+    observeEvent(input$short_break, {
+      set_pressed_button(ns("short_break"), class = "menu-btn")
+      timer$set_mode("short_break")
+    })
+    
+    observeEvent(input$long_break, {
+      set_pressed_button(ns("long_break"), class = "menu-btn")
+      timer$set_mode("long_break")
     })
 
     # Control handlers
@@ -57,6 +72,7 @@ timer_server <- function(id) {
     # Update claim button
     observe({
       progress <- timer$progress()
+      if (!timer$pomodoro_active()) progress <- 0
       runjs(sprintf("
         const claimBtn = document.querySelector('.claim-btn');
         if (claimBtn) {

@@ -11,6 +11,8 @@ source("R/prize.R")
 
 source("R/utils.R")
 
+timer <- TimerState$new()
+
 ui <- fluidPage(
   useShinyjs(),
   tags$head(

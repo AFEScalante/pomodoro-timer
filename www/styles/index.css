@@ -102,6 +102,11 @@
   background-color: #f8f8f8;
 }
 
+.timer-buttons {
+  display: flex;
+  gap: 1.2rem;
+}
+
 .timer-display {
   font-family: var(--font-lexend-mega);
   font-size: 6rem;
@@ -112,6 +117,37 @@
 .timer-controls {
   display: flex;
   gap: 1rem;
+}
+
+.menu-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: 6px 6px 0 0 #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none; /* Removes the orange outline */
+}
+
+.menu-btn:hover {
+  box-shadow: 6px 6px 0 0 #000; /* Slight shadow */
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* When button is pressed down (but not yet released) */
+.menu-btn:active {
+  transform: translateY(6px); /* Moves down completely */
+  box-shadow: none; /* No shadow to mimic pressed button */
+}
+
+/* After releasing (button comes up slightly) */
+.menu-btn.pressed {
+  transform: translateY(2px); /* Comes up a little after being released */
+  box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+  outline: none;
+  box-shadow: none;
 }
 
 .timer-btn {
@@ -160,6 +196,8 @@
 .timer-btn.pressed {
   transform: translateY(2px); /* Comes up a little after being released */
   box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+  outline: none;
+  box-shadow: none;
 }
 
 /* Focus state to remove outline */

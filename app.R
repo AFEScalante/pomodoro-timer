@@ -1,16 +1,18 @@
 library(shiny)
+library(httr)
+library(glue)
+library(shinyjs)
 
-source("R/timer_manager.R")
-
+# Loading Shiny modules
 source("R/header.R")
 source("R/timer.R")
 source("R/task.R")
 source("R/prize.R")
 
-timer_manager <- TimerManager$new()
+source("R/utils.R")
 
 ui <- fluidPage(
-  shinyjs::useShinyjs(),
+  useShinyjs(),
   tags$head(
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Lexend Mega:wght@700&display=swap"),
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Public Sans:wght@400;700;800&display=swap"),
@@ -28,6 +30,7 @@ ui <- fluidPage(
 
 server <- function(input, output, server) {
   header_server("header")
+  task_server("taks")
   timer_server("timer")
   prize_server("prize")
 }

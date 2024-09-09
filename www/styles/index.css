@@ -1,8 +1,4 @@
 @import url("global.css");
-@import url("header.css");
-@import url("tasks.css");
-@import url("timerBox.css");
-@import url("claimPrize.css");
 
 .app {
   display: flex;
@@ -15,4 +11,248 @@
   font-size: var(--font-size-base);
   color: var(--color-black);
   font-family: var(--font-public-sans);
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.header .editbutton-icon {
+  height: 3.5rem;
+  width: 3.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.header a {
+  text-decoration: none;
+  position: relative;
+  letter-spacing: -0.2em;
+  font-weight: 700;
+  color: inherit;
+  font-size: var(--font-size-29xl);
+  font-family: var(--font-lexend-mega);
+}
+
+/* TASKS */
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-container span {
+  text-align: center;
+}
+
+.task-container .shiny-input-container:not(.shiny-input-container-inline) {
+  width: auto !important;
+}
+
+.task-container .task-desc input {
+  width: auto !important;
+  font-size: var(--font-size-base);
+  border: none;
+  background: none;
+}
+
+.task-container .task-desc .form-control {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  color: var(--color-tomato);
+  font-weight: 700;
+}
+
+.task-container .form-group {
+  margin-bottom: 0 !important;
+}
+
+.task-container .form-control {
+  text-align: center;
+}
+
+.task-iters .form-control {
+  background: none;
+  border: 1px solid #000;
+  padding: 8px;
+  font-size: inherit;
+  box-shadow: 1px 2px 0 1px #000;
+}
+
+/* TIMER */
+.timer-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 50rem;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: 1px 2px 0 1px #000;
+  border: 1px solid var(--color-black);
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 2rem;
+  margin-top: 3.5rem;
+  background-color: #f8f8f8;
+}
+
+.timer-display {
+  font-family: var(--font-lexend-mega);
+  font-size: 6rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.timer-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: 6px 6px 0 0 #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none; /* Removes the orange outline */
+}
+
+/* Play button */
+.timer-btn.play-btn {
+  background-color: #4CAF50; /* Green for play */
+  color: #fff;
+}
+
+/* Pause button */
+.timer-btn.pause-btn {
+  background-color: #FFEB3B; /* Yellow for pause */
+  color: #000;
+}
+
+/* Stop button */
+.timer-btn.stop-btn {
+  background-color: #F44336; /* Red for stop */
+  color: #fff;
+}
+
+/* Minimal hover effect */
+.timer-btn:hover {
+  box-shadow: 6px 6px 0 0 #000; /* Slight shadow */
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* When button is pressed down (but not yet released) */
+.timer-btn:active {
+  transform: translateY(6px); /* Moves down completely */
+  box-shadow: none; /* No shadow to mimic pressed button */
+}
+
+/* After releasing (button comes up slightly) */
+.timer-btn.pressed {
+  transform: translateY(2px); /* Comes up a little after being released */
+  box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+}
+
+/* Focus state to remove outline */
+.timer-btn:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+
+/* Buttons */
+.tomato-bg {
+  background-color: var(--color-tomato);
+}
+
+.green-bg {
+  background-color: #90ee90;
+}
+
+.blue-bg {
+  background-color: #70cdde;
+}
+
+/* CLAIM PRIZE */
+.claim-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 23rem;
+  border: 3px solid #000;
+  padding: 1rem;
+  box-shadow: 5px 5px 0 0 #000;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  z-index: 1; /* Ensures text is on top */
+  color: #000;
+}
+
+/* Hover effect */
+.claim-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+/* Pressed effect */
+.claim-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 #000;
+}
+
+/* Progress bar */
+.claim-btn::before {
+  background-color: var(--color-orange); /* Color of the progress bar */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Ensures it stays behind the text */
+  transition: transform 0.3s ease;
+  transform: translateX(calc(-100% + (var(--progress, 0) * 100%)));
+}
+
+.claim-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Enhance text visibility when progress bar passes over */
+.claim-btn::before {
+  mix-blend-mode: multiply; /* Ensures progress bar and text blend well */
+}
+
+/* PRIZE TEXT */
+.prize {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.prize .shiny-text-output {
+  margin-top: 3rem;
+  padding: 1.2rem;
+  color: #fff;
+  border: 1px solid #000;
+  background: #3300ff;
+  box-shadow: 1px 2px 0 1px #000;
+  font-family: monospace;
+  max-width: 50rem;
+  text-align: center;
+  font-size: smaller;
 }

@@ -14,7 +14,26 @@ set_pressed_button <- function(input_id, class = "timer-btn") {
 reset_claim_button <- function() {
   runjs(
     "const claimBtn = document.querySelector('.claim-btn');
+     claimBtn.style.setProperty('--progress', '0');
      claimBtn.disabled = true;"
   )
-  timer$progress(0)
+}
+
+update_claim_progress <- function(progress) {
+  runjs(
+    glue("
+    const claimBtn = document.querySelector('.claim-btn');
+    if (claimBtn) {{
+      claimBtn.style.setProperty('--progress', '{progress}');
+    }}
+    ")
+  )
+}
+
+enable_claim_button <- function() {
+  runjs(
+    "const claimBtn = document.querySelector('.claim-btn');
+     claimBtn.disabled = false;
+    "
+  )
 }

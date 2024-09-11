@@ -5,20 +5,23 @@ TimerState <- R6Class(
   public = list(
     initial_time = NULL,
     current_time = NULL,
-    pomodoro_time = 5,
+    pomodoro_time = 3,
     short_break_time = 3,
-    long_break_time = 10,
+    long_break_time = 3,
     is_running = FALSE,
-    pomodoro_active = NULL,
+    pomodoro_iter = NULL,
+    trigger_mode = NULL,
     time_string = NULL,
     progress = NULL,
+    current_mode = "pomodoro",
 
     initialize = function() {
       self$initial_time <- self$pomodoro_time
       self$current_time <- self$pomodoro_time
       self$time_string <- reactiveVal(self$format_time(self$pomodoro_time))
       self$progress <- reactiveVal(0)
-      self$pomodoro_active <- reactiveVal(TRUE)
+      self$pomodoro_iter <- reactiveVal(0)
+      self$trigger_mode <- reactiveVal("")
     },
 
     reset = function() {
@@ -50,17 +53,51 @@ TimerState <- R6Class(
     },
 
     set_mode = function(mode) {
-      time <- switch(
-        mode,
-        "pomodoro" = self$pomodoro_time,
-        "short_break" = self$short_break_time,
-        "long_break" = self$long_break_time,
+      valid_modes <- c("pomodoro", "short_break", "long_break")
+      if (!mode %in% valid_modes) {
         stop("Invalid mode")
+      }
+      
+      mode_settings <- list(
+        pomodoro = list(time = self$pomodoro_time, color = "#ff5052"),
+        short_break = list(time = self$short_break_time, color = "#90ee90"),
+        long_break = list(time = self$long_break_time, color = "#70cdde")
       )
+      
+      time <- mode_settings[[mode]]$time
+      color_mode <- mode_settings[[mode]]$color
+      
+      runjs(glue(
+        "const timerDiv = document.querySelector('.timer-container');
+        timerDiv.style.backgroundColor = '{color_mode}';
+        $('.timer-btn').removeClass('pressed');"
+      ))
 
-      self$pomodoro_active(mode == "pomodoro")
+      self$current_mode <- mode
       self$set_time(time)
       self$reset()
+    },
+
+    handle_pomodoro_cycle = function() {
+      if (self$current_mode == "pomodoro") {
+        self$increment_pomodoro()
+    
+        break_type <- self$determine_break_type()
+        self$trigger_mode(break_type)
+      } else if (grepl("break", self$current_mode)) {
+        self$trigger_mode("pomodoro")
+      }
+    
+      self$is_running <- FALSE
+    },
+
+    increment_pomodoro = function() {
+      self$pomodoro_iter(self$pomodoro_iter() + 1)
+      enable_claim_button()
+    },
+    
+    determine_break_type = function() {
+      ifelse(self$pomodoro_iter() %% 4 == 0, "long_break", "short_break")
     },
 
     set_time = function(time) {

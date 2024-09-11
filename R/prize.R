@@ -3,7 +3,7 @@ prize_ui <- function(id) {
 
   div(
     class = "prize",
-    tags$button("CLAIM YOUR REWARD!", class = "claim-btn", onclick = set_input_value(ns("get_joke"))),
+    tags$button("CLAIM YOUR REWARD!", class = "claim-btn", onclick = set_input_value(ns("get_joke")), disabled = TRUE),
     textOutput(ns("dad_joke"))
   )
 }

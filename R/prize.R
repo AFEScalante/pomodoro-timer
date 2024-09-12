@@ -3,7 +3,7 @@ prize_ui <- function(id) {
 
   div(
     class = "prize",
-    tags$button("CLAIM YOUR REWARD!", class = "claim-btn", onclick = set_input_value(ns("get_joke"))),
+    tags$button("CLAIM YOUR REWARD!", class = "claim-btn", onclick = set_input_value(ns("get_joke")), disabled = TRUE),
     textOutput(ns("dad_joke"))
   )
 }
@@ -11,6 +11,7 @@ prize_ui <- function(id) {
 prize_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     joke_reactive <- eventReactive(input$get_joke, {
+      reset_claim_button()
       get_dad_joke()
     })
 
@@ -26,6 +27,6 @@ get_dad_joke <- function() {
   if (status_code(res) == 200) {
     content(res, as = "text", encoding = "UTF-8")
   } else {
-    "No se pudo obtener una dad joke."
+    "Error retrieving dad joke :/"
   }
 }

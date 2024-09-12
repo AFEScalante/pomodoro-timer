@@ -29,9 +29,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, server) {
+  timer <- TimerState$new()
+
   header_server("header")
   task_server("taks")
-  timer_server("timer")
+  timer_server("timer", timer)
   prize_server("prize")
 }
 

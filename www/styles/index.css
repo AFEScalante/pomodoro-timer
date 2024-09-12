@@ -1,5 +1,53 @@
 @import url("global.css");
 
+/* VARS */
+:root {
+  /* fonts */
+  --font-public-sans: "Public Sans";
+  --font-archivo: Archivo;
+  --font-lexend-mega: "Lexend Mega";
+
+  /* font sizes */
+  --font-size-base: 1.4rem;
+  --font-size-sm: 0.975rem;
+  --font-size-77xl: 6rem;
+  --font-size-10xl: 1.813rem;
+  --font-size-29xl: 2.3rem;
+
+  /* Colors */
+  --color-black: #000;
+  --color-orange: #ffb904;
+  --color-darkslategray: #333;
+  --color-tomato: #ff5052;
+  --color-mediumpurple: #c4a1ff;
+  --color-green: #90ee90;
+  --color-blue: #70cdde;
+  --color-deepblue: #3300ff;
+
+  /* Gaps */
+  --gap-17xl: 2.25rem;
+  --gap-lg: 1.125rem;
+
+  /* Paddings */
+  --padding-14xl: 2.062rem;
+  --padding-xl: 1.25rem;
+  --padding-4xs: 0.562rem;
+  --padding-xs: 0.75rem;
+  --padding-4xl: 1.437rem;
+  --padding-3xs: 0.625rem;
+  --padding-10xs: 0.187rem;
+  --padding-6xl: 1.562rem;
+  --padding-13xl: 2rem;
+  --padding-5xs: 0.5rem;
+  --padding-8xs: 0.312rem;
+
+  /* Borders */
+  --br-8xs: 5px;
+  --br-3xl: 22px;
+  --border: solid 1vmin #000;
+  --border-small: solid 0.65vmin #000;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -98,8 +146,15 @@
   align-items: center;
   align-self: center;
   padding: 2rem;
-  margin-top: 3.5rem;
-  background-color: #f8f8f8;
+  background-color: var(--color-tomato);
+  transition: background-color 0.7s ease;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 1.2rem;
+  align-self: center;
+  margin: 2rem 0 2rem 0;
 }
 
 .timer-display {
@@ -112,9 +167,11 @@
 .timer-controls {
   display: flex;
   gap: 1rem;
+  align-self: center;
+  margin-top: 2rem;
 }
 
-.timer-btn {
+.menu-btn {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 0.5rem 1.5rem;
@@ -126,22 +183,36 @@
   outline: none; /* Removes the orange outline */
 }
 
-/* Play button */
-.timer-btn.play-btn {
-  background-color: #4CAF50; /* Green for play */
-  color: #fff;
+.menu-btn:hover {
+  box-shadow: 6px 6px 0 0 #000; /* Slight shadow */
+  transform: translateY(-2px); /* Subtle lift */
 }
 
-/* Pause button */
-.timer-btn.pause-btn {
-  background-color: #FFEB3B; /* Yellow for pause */
+/* When button is pressed down (but not yet released) */
+.menu-btn:active {
+  transform: translateY(6px); /* Moves down completely */
+  box-shadow: none; /* No shadow to mimic pressed button */
+}
+
+/* After releasing (button comes up slightly) */
+.menu-btn.pressed {
+  transform: translateY(2px); /* Comes up a little after being released */
+  box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+  outline: none;
+  box-shadow: none;
+}
+
+.timer-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
   color: #000;
-}
-
-/* Stop button */
-.timer-btn.stop-btn {
-  background-color: #F44336; /* Red for stop */
-  color: #fff;
+  border: 4px solid #000;
+  background-color: var(--color-orange);
+  box-shadow: 6px 6px 0 0 #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none; /* Removes the orange outline */
 }
 
 /* Minimal hover effect */
@@ -160,6 +231,8 @@
 .timer-btn.pressed {
   transform: translateY(2px); /* Comes up a little after being released */
   box-shadow: 4px 4px 0 0 #000; /* Shadow reappears */
+  outline: none;
+  box-shadow: none;
 }
 
 /* Focus state to remove outline */

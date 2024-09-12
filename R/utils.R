@@ -37,3 +37,37 @@ enable_claim_button <- function() {
     "
   )
 }
+
+update_iter_display <- function(value) {
+  runjs(
+    glue(
+      "
+      const iterDiv = document.querySelector('.iter-display')
+      iterDiv.textContent = '{value}'
+      "
+    )
+  )
+}
+
+display_prize <- function(joke) {
+  runjs(
+    glue(
+      "
+      const jokeDiv = document.querySelector('.dad-joke-container');
+      jokeDiv.classList.remove('hide');
+      jokeDiv.textContent='{joke}';
+      "
+    )
+  )
+}
+
+hide_prize <- function() {
+  runjs(
+    glue(
+      "
+      const jokeDiv = document.querySelector('.dad-joke-container');
+      jokeDiv.classList.add('hide');
+      "
+    )
+  )
+}

@@ -124,12 +124,15 @@
   text-align: center;
 }
 
-.task-iters .form-control {
-  background: none;
-  border: 1px solid #000;
-  padding: 8px;
-  font-size: inherit;
-  box-shadow: 1px 2px 0 1px #000;
+.iter-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0 1.2rem 0;
+  font-family: var(--font-lexend-mega);
+}
+
+.iter-container span {
+  margin: 0 1rem 0 1rem;
 }
 
 /* TIMER */
@@ -317,7 +320,7 @@
   margin-top: 3rem;
 }
 
-.prize .shiny-text-output {
+.prize .dad-joke-container {
   margin-top: 3rem;
   padding: 1.2rem;
   color: #fff;
@@ -328,4 +331,16 @@
   max-width: 50rem;
   text-align: center;
   font-size: smaller;
+  transition: all 0.1s ease;
+}
+
+.dad-joke-container:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.hide {
+  transition: opacity 200ms, display 200ms;
+  display: none;
+  opacity: 0;
 }

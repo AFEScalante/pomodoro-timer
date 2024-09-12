@@ -71,11 +71,9 @@ timer_server <- function(id, timer) {
     })
 
     observeEvent(input$stop, {
-      if (timer$is_running) {
-        set_pressed_button(ns("stop"))
-        reset_claim_button()
-        timer$reset()
-      }
+      set_pressed_button(ns("stop"))
+      reset_claim_button()
+      timer$reset()
     })
 
     observe({

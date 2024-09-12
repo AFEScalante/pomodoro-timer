@@ -10,10 +10,11 @@ TimerState <- R6Class(
     long_break_time = 3,
     is_running = FALSE,
     pomodoro_iter = NULL,
-    trigger_mode = NULL,
     time_string = NULL,
     progress = NULL,
     current_mode = "pomodoro",
+    next_timer = NULL,
+    timer_ended = NULL,
 
     initialize = function() {
       self$initial_time <- self$pomodoro_time
@@ -21,7 +22,7 @@ TimerState <- R6Class(
       self$time_string <- reactiveVal(self$format_time(self$pomodoro_time))
       self$progress <- reactiveVal(0)
       self$pomodoro_iter <- reactiveVal(0)
-      self$trigger_mode <- reactiveVal("")
+      self$timer_ended <- reactiveVal(0)
     },
 
     reset = function() {
@@ -57,16 +58,16 @@ TimerState <- R6Class(
       if (!mode %in% valid_modes) {
         stop("Invalid mode")
       }
-      
+
       mode_settings <- list(
         pomodoro = list(time = self$pomodoro_time, color = "#ff5052"),
         short_break = list(time = self$short_break_time, color = "#90ee90"),
         long_break = list(time = self$long_break_time, color = "#70cdde")
       )
-      
+
       time <- mode_settings[[mode]]$time
       color_mode <- mode_settings[[mode]]$color
-      
+
       runjs(glue(
         "const timerDiv = document.querySelector('.timer-container');
         timerDiv.style.backgroundColor = '{color_mode}';
@@ -81,13 +82,14 @@ TimerState <- R6Class(
     handle_pomodoro_cycle = function() {
       if (self$current_mode == "pomodoro") {
         self$increment_pomodoro()
-    
+
         break_type <- self$determine_break_type()
-        self$trigger_mode(break_type)
+        self$next_timer <- break_type
       } else if (grepl("break", self$current_mode)) {
-        self$trigger_mode("pomodoro")
+        self$next_timer <- "pomodoro"
       }
-    
+
+      self$timer_ended(self$timer_ended() + 1)
       self$is_running <- FALSE
     },
 
@@ -95,7 +97,7 @@ TimerState <- R6Class(
       self$pomodoro_iter(self$pomodoro_iter() + 1)
       enable_claim_button()
     },
-    
+
     determine_break_type = function() {
       ifelse(self$pomodoro_iter() %% 4 == 0, "long_break", "short_break")
     },

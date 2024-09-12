@@ -43,16 +43,16 @@ timer_server <- function(id, timer) {
       set_pressed_button(ns("short_break"), class = "menu-btn")
       timer$set_mode("short_break")
     })
-    
+
     observeEvent(input$long_break, {
       set_pressed_button(ns("long_break"), class = "menu-btn")
       timer$set_mode("long_break")
     })
 
     # This is triggered whenever a cycle conclude
-    observeEvent(timer$trigger_mode(), {
-      set_pressed_button(ns(timer$trigger_mode()), class = "menu-btn")
-      timer$set_mode(timer$trigger_mode())
+    observeEvent(timer$timer_ended(), {
+      set_pressed_button(ns(timer$next_timer), class = "menu-btn")
+      timer$set_mode(timer$next_timer)
     }, ignoreInit = TRUE)
 
     # Control handlers

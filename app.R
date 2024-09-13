@@ -14,6 +14,7 @@ source("R/utils.R")
 ui <- fluidPage(
   useShinyjs(),
   tags$head(
+    tags$script(src = "clockInput.js"),
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Lexend Mega:wght@700&display=swap"),
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Public Sans:wght@400;700;800&display=swap"),
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap"),
@@ -31,7 +32,7 @@ ui <- fluidPage(
 server <- function(input, output, server) {
   timer <- TimerState$new()
 
-  header_server("header")
+  header_server("header", timer)
   task_server("taks")
   timer_server("timer", timer)
   prize_server("prize")

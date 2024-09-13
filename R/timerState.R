@@ -15,6 +15,11 @@ TimerState <- R6Class(
     current_mode = "pomodoro",
     next_timer = NULL,
     timer_ended = NULL,
+    mode_colors = list(
+      pomodoro = "#ff5052",
+      short_break = "#90ee90",
+      long_break = "#70cdde"
+    ),
 
     initialize = function() {
       self$initial_time <- self$pomodoro_time
@@ -59,23 +64,23 @@ TimerState <- R6Class(
         stop("Invalid mode")
       }
 
-      mode_settings <- list(
-        pomodoro = list(time = self$pomodoro_time, color = "#ff5052"),
-        short_break = list(time = self$short_break_time, color = "#90ee90"),
-        long_break = list(time = self$long_break_time, color = "#70cdde")
+      mode_times <- list(
+        pomodoro = self$pomodoro_time,
+        short_break = self$short_break_time,
+        long_break = self$long_break_time
       )
 
-      time <- mode_settings[[mode]]$time
-      color_mode <- mode_settings[[mode]]$color
+      mode_time <- mode_times[[mode]]
+      mode_color <- self$mode_colors[[mode]]
 
       runjs(glue(
         "const timerDiv = document.querySelector('.timer-container');
-        timerDiv.style.backgroundColor = '{color_mode}';
+        timerDiv.style.backgroundColor = '{mode_color}';
         $('.timer-btn').removeClass('pressed');"
       ))
 
       self$current_mode <- mode
-      self$set_time(time)
+      self$set_time(mode_time)
       self$reset()
     },
 

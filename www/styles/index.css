@@ -120,10 +120,6 @@
   margin-bottom: 0 !important;
 }
 
-.task-container .form-control {
-  text-align: center;
-}
-
 .iter-container {
   display: flex;
   justify-content: center;
@@ -133,6 +129,12 @@
 
 .iter-container span {
   margin: 0 1rem 0 1rem;
+}
+
+#task-reset {
+  background: #FFA6F6;
+  border: solid 2px #000;
+  border-radius: 2rem;
 }
 
 /* TIMER */

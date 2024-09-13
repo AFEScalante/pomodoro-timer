@@ -33,7 +33,7 @@ server <- function(input, output, server) {
   timer <- TimerState$new()
 
   header_server("header", timer)
-  task_server("taks")
+  task_server("task", timer)
   timer_server("timer", timer)
   prize_server("prize")
 }

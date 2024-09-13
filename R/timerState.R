@@ -96,6 +96,7 @@ TimerState <- R6Class(
     increment_pomodoro = function() {
       self$pomodoro_iter(self$pomodoro_iter() + 1)
       enable_claim_button()
+      update_iter_display(self$pomodoro_iter())
     },
 
     determine_break_type = function() {

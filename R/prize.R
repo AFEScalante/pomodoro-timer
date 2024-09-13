@@ -4,19 +4,15 @@ prize_ui <- function(id) {
   div(
     class = "prize",
     tags$button("CLAIM YOUR REWARD!", class = "claim-btn", onclick = set_input_value(ns("get_joke")), disabled = TRUE),
-    textOutput(ns("dad_joke"))
+    div(class = "dad-joke-container hide", "")
   )
 }
 
 prize_server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    joke_reactive <- eventReactive(input$get_joke, {
+    observeEvent(input$get_joke, {
       reset_claim_button()
-      get_dad_joke()
-    })
-
-    output$dad_joke <- renderText({
-      joke_reactive()
+      display_prize(get_dad_joke())
     })
   })
 }

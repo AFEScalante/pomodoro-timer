@@ -37,3 +37,37 @@ enable_claim_button <- function() {
     "
   )
 }
+
+clock_input <- function(inputId, label = "Pomodoro", value = 10, color = "#e74c3c") {
+  minutes <- value %/% 60
+  seconds <- value %% 60
+
+  tagList(
+    div(
+      class = "clock-container",
+      tags$label(label, class = "clock-label"),
+      div(
+        class = "clock-inputs",
+        style = sprintf("background-color: %s;", color),
+        tags$input(
+          type = "number",
+          id = paste0(inputId, "_min"),
+          class = "clock-input",
+          value = sprintf("%02d", minutes),
+          min = 0,
+          max = 59
+        ),
+        span(":", class = "clock-separator"),
+        tags$input(
+          type = "number",
+          id = paste0(inputId, "_sec"),
+          class = "clock-input",
+          value = sprintf("%02d", seconds),
+          min = 0,
+          max = 59
+        )
+      )
+    ),
+    tags$script(sprintf("initializeClock('%s', %d);", inputId, value))
+  )
+}

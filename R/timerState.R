@@ -115,6 +115,20 @@ TimerState <- R6Class(
 
     calculate_progress = function() {
       1 - (self$current_time / self$initial_time)
+    },
+
+    load_values = function(stored_values) {
+      self$pomodoro_time <- stored_values$pomodoro_time
+      self$short_break_time <- stored_values$short_break_time
+      self$long_break_time <- stored_values$long_break_time
+    },
+
+    get_values_to_store = function() {
+      list(
+        pomodoro_time = self$pomodoro_time,
+        short_break_time = self$short_break_time,
+        long_break_time = self$long_break_time
+      )
     }
   )
 )

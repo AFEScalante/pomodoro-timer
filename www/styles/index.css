@@ -132,9 +132,14 @@
 }
 
 #task-reset {
-  background: #FFA6F6;
+  background-color: #FFA6F6;
   border: solid 2px #000;
-  border-radius: 2rem;
+  border-radius: 50%;
+  width: 3rem;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* TIMER */

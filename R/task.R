@@ -7,7 +7,7 @@ task_ui <- function(id) {
       span("I want to focus on "),
       textInput(ns("task"), label = NULL, placeholder = "type your task here") |> 
         tagAppendAttributes(class = "task-desc"),
-      actionButton(ns("reset"), label = tags$img(src = "images/reset.svg", height = "15px", widht = "15px"))
+      actionButton(ns("reset"), label = tags$img(src = "images/reset.svg", height = "14px"))
     ),
     div(
       class = "iter-container",

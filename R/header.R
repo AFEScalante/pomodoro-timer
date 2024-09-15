@@ -4,7 +4,11 @@ header_ui <- function(id) {
   tags$header(
     class = "header",
     a(class = "pomodoro-timer", "Pomodoro Timer"),
-    actionButton(ns("edit_time"), icon("pencil"))
+    tags$img(
+      src = "images/editbutton.svg",
+      class = "editbutton",
+      onclick = set_input_value(ns("edit_time"))
+    )
   )
 }
 
@@ -16,19 +20,17 @@ header_server <- function(id, timer) {
       showModal(
         modalDialog(
           title = NULL,
-          div(class = "modal-background",
-            div(class = "modal-content",
-              div(
-                class = "clocks",
-                clock_input(ns("pomodoro_duration"), "pomodoro",
-                 value = timer$pomodoro_time, color = timer$mode_colors$pomodoro),
-                clock_input(ns("short_break_duration"), "short break",
-                 value = timer$short_break_time, color = timer$mode_colors$short_break),
-                clock_input(ns("long_break_duration"), "long break",
-                 value = timer$long_break_time, color = timer$mode_colors$long_break)
-              ),
-              actionButton(ns("close_modal"), label = "X", class = "close-btn")
-            )
+          tagList(
+            div(
+              class = "clocks",
+              clock_input(ns("pomodoro_duration"), "pomodoro",
+                value = timer$pomodoro_time, color = timer$mode_colors$pomodoro),
+              clock_input(ns("short_break_duration"), "short break",
+                value = timer$short_break_time, color = timer$mode_colors$short_break),
+              clock_input(ns("long_break_duration"), "long break",
+                value = timer$long_break_time, color = timer$mode_colors$long_break)
+            ),
+            tags$button(onclick = set_input_value(ns("close_modal")), "x", class = "close-btn")
           ),
           easyClose = TRUE,
           fade = FALSE,

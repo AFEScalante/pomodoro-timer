@@ -5,17 +5,32 @@ timer_ui <- function(id) {
   tagList(
     div(
       class = "timer-buttons",
-      actionButton(ns("pomodoro"), label = "pomodoro", class = "menu-btn tomato-bg pressed"),
-      actionButton(ns("short_break"), label = "break", class = "menu-btn green-bg"),
-      actionButton(ns("long_break"), label = "long break", class = "menu-btn blue-bg")
+      tags$button(
+        id = ns("pomodoro"),
+        onclick = set_input_value(ns("pomodoro")),
+        "pomodoro",
+        class = "menu-btn tomato-bg pressed"
+      ),
+      tags$button(
+        id = ns("short_break"),
+        onclick = set_input_value(ns("short_break")),
+        "short break",
+        class = "menu-btn green-bg"
+      ),
+      tags$button(
+        id = ns("long_break"),
+        onclick = set_input_value(ns("long_break")),
+        "long break",
+        class = "menu-btn blue-bg"
+      )
     ),
     div(class = "timer-container",
       div(class = "timer-display", textOutput(ns("time_display"))),
     ),
     div(class = "timer-controls",
-    actionButton(ns("play"), icon("play"), class = "timer-btn play-btn"),
-    actionButton(ns("pause"), icon("pause"), class = "timer-btn pause-btn"),
-    actionButton(ns("stop"), icon("stop"), class = "timer-btn stop-btn")
+    tags$button(id = ns("play"), icon("play"), class = "timer-btn play-btn", onclick = set_input_value(ns("play"))),
+    tags$button(id = ns("pause"), icon("pause"), class = "timer-btn pause-btn", onclick = set_input_value(ns("pause"))),
+    tags$button(id = ns("stop"), icon("stop"), class = "timer-btn stop-btn", onclick = set_input_value(ns("stop")))
     )
   )
 }

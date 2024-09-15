@@ -15,6 +15,7 @@ TimerState <- R6Class(
     current_mode = "pomodoro",
     next_timer = NULL,
     timer_ended = NULL,
+    task_description  = NULL,
     mode_colors = list(
       pomodoro = "#ff5052",
       short_break = "#90ee90",
@@ -113,21 +114,34 @@ TimerState <- R6Class(
       self$current_time <- time
     },
 
+    set_task_description = function(value) {
+      if (is.null(value)) return()
+      self$task_description <- value
+    },
+
     calculate_progress = function() {
       1 - (self$current_time / self$initial_time)
+    },
+
+    update_task_description = function(session) {
+      updateTextInput(session, inputId = "task-task", value = self$task_description)
     },
 
     load_values = function(stored_values) {
       self$pomodoro_time <- stored_values$pomodoro_time
       self$short_break_time <- stored_values$short_break_time
       self$long_break_time <- stored_values$long_break_time
+      self$task_description <- stored_values$task_description
+      self$pomodoro_iter(stored_values$pomodoro_iter)
     },
 
     get_values_to_store = function() {
       list(
         pomodoro_time = self$pomodoro_time,
         short_break_time = self$short_break_time,
-        long_break_time = self$long_break_time
+        long_break_time = self$long_break_time,
+        task_description = self$task_description,
+        pomodoro_iter = self$pomodoro_iter()
       )
     }
   )

@@ -41,8 +41,11 @@ server <- function(input, output, session) {
   # Load the values from localStorage (triggered when session starts, see /storage.js)
   observeEvent(input$stored_values, {
     timer$load_values(input$stored_values)
+
     # Make stored values visible in default mode.
     timer$set_mode("pomodoro")
+    timer$update_task_description(session)
+    update_iter_display(timer$pomodoro_iter())
   }, ignoreNULL = TRUE)
 
 

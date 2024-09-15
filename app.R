@@ -2,6 +2,7 @@ library(shiny)
 library(httr)
 library(glue)
 library(shinyjs)
+library(shinytitle)
 
 # Load Shiny modules
 source("R/header.R")
@@ -12,6 +13,8 @@ source("R/prize.R")
 source("R/utils.R")
 
 ui <- fluidPage(
+  title = "Pomodoro Timer",
+  use_shiny_title(),
   useShinyjs(),
   tags$head(
     tags$script(src = "clockInput.js"),

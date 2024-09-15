@@ -7,9 +7,14 @@ task_ui <- function(id) {
       span("I want to focus on "),
       div(
         class = "task-widgets",
-        textInput(ns("task"), label = NULL, placeholder = "type your task...") |> 
+        textInput(ns("task"), label = NULL, placeholder = "type your task...") |>
           tagAppendAttributes(class = "task-desc"),
-        actionButton(ns("reset"), label = tags$img(src = "images/reset.svg", height = "14px"))
+
+        tags$img(
+          src = "images/reset.svg",
+          class = "resetbutton",
+          onclick = set_input_value(ns("reset"))
+        )
       )
     ),
     div(
@@ -21,12 +26,21 @@ task_ui <- function(id) {
 
 task_server <- function(id, timer) {
   moduleServer(id, function(input, output, session) {
-    task_d <- reactive(input$task) |> debounce(millis = 1000)
+    observeEvent(timer$values_loaded(), {
+      # Make stored values visible in default mode.
+      updateTextInput(session, inputId = "task", value = timer$task_description)
+    })
 
+    task_d <- reactive(input$task) |> debounce(millis = 1000)
     observeEvent(task_d(), {
       timer$set_task_description(task_d())
       session$sendCustomMessage("update_current_state", timer$get_values_to_store())
     }, ignoreInit = TRUE)
+
+    observeEvent(timer$pomodoro_iter(), {
+      update_iter_display(timer$pomodoro_iter())
+      session$sendCustomMessage("update_current_state", timer$get_values_to_store())
+    })
 
     observeEvent(input$reset, {
       updateTextInput(session, inputId = "task", value = "")
@@ -36,11 +50,8 @@ task_server <- function(id, timer) {
 
       # Clear iteration
       timer$pomodoro_iter(0)
-      update_iter_display(0)
 
       hide_prize()
-
-      session$sendCustomMessage("update_current_state", timer$get_values_to_store())
     })
   })
 }

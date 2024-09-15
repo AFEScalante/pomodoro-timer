@@ -66,8 +66,38 @@ body {
   .editbutton {
     height: 3.5rem;
     width: 3.5rem;
-    border: none;
+    border: 3px solid $color-black;
+    border-radius: 50%; // This ensures the button remains circular
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 2px 2px 0 0 $color-black;
+    margin: 6px; // To avoid cutting out the shadow
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    z-index: 1;
+
+    // Center the SVG icon
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 50%;
+      width: 50%;
+    }
+
+    /* Hover effect */
+    &:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 0 $color-black;
+    }
+
+    /* Pressed effect */
+    &:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0 0 $color-black;
+    }
   }
 }
 
@@ -90,26 +120,68 @@ body {
     .shiny-input-container:not(.shiny-input-container-inline) {
       width: auto !important;
     }
-  
+
     .form-group {
       margin-bottom: 0 !important;
     }
-  
+
     .task-desc {
+      border-radius: 0;
+      border-bottom: dashed 2px;
+      
       input {
+        text-overflow: ellipsis;
         width: auto !important;
         font-size: $font-size-base;
         border: none;
         background: none;
       }
-  
+
       .form-control {
         box-shadow: none !important;
         -webkit-box-shadow: none !important;
         color: $color-tomato;
         font-weight: 700;
       }
-    }  
+    }
+  }
+
+  .resetbutton {
+    background-color: $color-darkpink;
+    height: 3rem;
+    width: 3rem;
+    border: 3px solid $color-black;
+    border-radius: 50%; // This ensures the button remains circular
+    cursor: pointer;
+    box-shadow: 3px 3px 0 0 $color-black;
+    margin: 6px; // To avoid cutting out the shadow
+    padding: 3px; // To have some space between icon and border
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    z-index: 1;
+
+    // Center the SVG icon
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 50%;
+      width: 50%;
+    }
+
+    /* Hover effect */
+    &:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 0 $color-black;
+    }
+
+    /* Pressed effect */
+    &:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0 0 $color-black;
+    }
   }
 }
 
@@ -122,23 +194,6 @@ body {
   .iter-display {
     margin: 0 1rem 0 1rem;
   }
-}
-
-#task-task {
-  text-overflow: ellipsis;
-  border-radius: 0;
-  border-bottom: dashed 2px;
-}
-
-#task-reset {
-  background-color: $color-darkpink;
-  border: solid 2px $color-black;
-  border-radius: 50%;
-  width: 3rem;
-  display: flex;
-  height: 3rem;
-  justify-content: center;
-  align-items: center;
 }
 
 /* TIMER */
@@ -189,27 +244,21 @@ body {
   background-color: $color-white;
   box-shadow: 6px 6px 0 0 $color-black;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   outline: none;
 
   &:hover {
-    box-shadow: 6px 6px 0 0 $color-black;
-    transform: translateY(-2px);
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
-    transform: translateY(6px); /* Moves down completely */
-    box-shadow: none; /* No shadow to mimic pressed button */
+  &.pressed {
+    transform: translate(6px, 6px);
+    outline: none;
+    box-shadow: none;
   }
 }
 
-/* After releasing (button comes up slightly) */
-.menu-btn.pressed {
-  transform: translateY(2px); /* Comes up a little after being released */
-  box-shadow: 4px 4px 0 0 $color-black; /* Shadow reappears */
-  outline: none;
-  box-shadow: none;
-}
 
 .timer-btn {
   font-size: 1.5rem;
@@ -220,30 +269,19 @@ body {
   background-color: $color-orange;
   box-shadow: 6px 6px 0 0 $color-black;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   outline: none; /* Removes the orange outline */
 
   &:hover {
-    box-shadow: 6px 6px 0 0 $color-black; /* Slight shadow */
-    transform: translateY(-2px); /* Subtle lift */
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
-    transform: translateY(6px); /* Moves down completely */
-    box-shadow: none; /* No shadow to mimic pressed button */
+  &.pressed {
+    transform: translate(6px, 6px);
+    outline: none;
+    box-shadow: none;
   }
-
-  &:focus {
-    outline: none; /* Remove default focus outline */
-  }  
-}
-
-/* After releasing (button comes up slightly) */
-.timer-btn.pressed {
-  transform: translateY(2px); /* Comes up a little after being released */
-  box-shadow: 4px 4px 0 0 $color-black; /* Shadow reappears */
-  outline: none;
-  box-shadow: none;
 }
 
 /* Buttons */
@@ -272,9 +310,10 @@ body {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.1s ease;
-  z-index: 1; /* Ensures text is on top */
+  transition: all 0.2s ease;
+  z-index: 1;
   color: $color-black;
+  margin: 6px;
 
   /* Hover effect */
   &:hover {
@@ -284,8 +323,8 @@ body {
 
   /* Pressed effect */
   &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 3px 3px 0 0 $color-black;
+    transform: translate(5px, 5px);
+    box-shadow: 1px 1px 0 0 $color-black;
   }
 
   /* Progress bar */
@@ -323,20 +362,21 @@ body {
 
   .dad-joke-container {
     margin-top: 3rem;
+    margin-bottom: 5px;
     padding: 1.2rem;
     color: $color-white;
     border: 1px solid $color-black;
     background: $color-deepblue;
-    box-shadow: 1px 2px 0 1px $color-black;
+    box-shadow: 2px 2px 0 0px $color-black;
     font-family: monospace;
     max-width: 50rem;
     text-align: center;
-    font-size: smaller;
-    transition: all 0.1s ease;
+    font-size: $font-size-xl;
+    transition: all 0.2s ease;
 
     &:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 0 $color-black;
+      box-shadow: 4px 4px 0 0 $color-black;
     }
   }
 }
@@ -348,98 +388,80 @@ body {
 }
 
 /* MODAL */
-.custom-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s, visibility 0.3s;
-}
+.modal-dialog {
+  text-align: -webkit-center;
 
-.custom-modal[aria-hidden='true'] {
-  opacity: 0;
-  visibility: hidden;
-}
+  .modal-content {
+    position: relative;
+    padding: 2rem;
+    background-color: $color-white;
+    box-shadow: 10px 8px rgba(0, 0, 0, 0.75);
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    width: fit-content;
 
-.modal-content {
-  position: relative;
-  padding: 2rem;
-  background-color: $color-white;
-  box-shadow: 10px 8px rgba(0, 0, 0, 0.75);
-  border-radius: 12px;
-  transition: all 0.3s ease-in-out;
-}
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-weight: 600;
+      font-family: 'FontAwesome';
+    }
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-weight: 600;
-}
+    .clocks {
+      display: grid;
+      row-gap: 3rem;
+      margin: 3rem;
 
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+      .clock-container {
+        display: grid;
+        justify-items: center;
+        padding: 1px;
+        border: 0px;
 
-/* MODAL CLOCKS */
-.clocks {
-  display: grid;
-  row-gap: 1rem;
-}
+        .clock-label {
+          display: block;
+          font-size: $font-size-base;
+          color: $color-black;
+          font-family: $font-lexend-mega;
+        }
 
-.clock-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  column-gap: 2rem;
-  padding: 1px;
-  border: 0px;
-}
+        .clock-inputs {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-family: $font-lexend-mega;
+          font-size: $font-size-xl;
+          color: $color-black;
+          border-radius: 1rem;
+          box-shadow: 1px 2px 0 1px $color-black;
+          border: 1px solid $color-black;
+          padding-left: 5px;
 
-.clock-label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: $font-size-xl;
-  color: $color-black;
-  font-family: $font-public-sans;
-}
+          .clock-input {
+            width: 5rem;
+            height: 5rem;
+            text-align: end;
+            border: none;
+            background-color: transparent;
+            outline: none;
 
-.clock-inputs {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: $font-lexend-mega;
-  font-size: $font-size-xl;
-  color: $color-black;
-  border-radius: 1rem;
-  box-shadow: 1px 2px 0 1px $color-black;
-  border: 1px solid $color-black;
-}
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              cursor: pointer;
+            }
+          }
 
-.clock-input {
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border: none;
-  background-color: transparent;
-  outline: none;
-}
-
-.clock-separator {
-  padding: 0 10px;
+          .clock-separator {
+            padding: 1px;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* MEDIA QUERIES */

@@ -4,8 +4,10 @@ library(glue)
 library(shinyjs)
 library(sass)
 library(rsconnect)
+library(stringi)
+library(shinytitle)
 
-# Loading Shiny modules
+# Load Shiny modules
 source("R/header.R")
 source("R/timer.R")
 source("R/task.R")
@@ -14,6 +16,8 @@ source("R/prize.R")
 source("R/utils.R")
 
 ui <- fluidPage(
+  title = "Pomodoro Timer",
+  use_shiny_title(),
   useShinyjs(),
   tags$head(
     tags$script(src = "clockInput.js"),
@@ -46,15 +50,12 @@ server <- function(input, output, session) {
 
     # Make stored values visible in default mode.
     timer$set_mode("pomodoro")
-    timer$update_task_description(session)
-    update_iter_display(timer$pomodoro_iter())
   }, ignoreNULL = TRUE)
-
 
   header_server("header", timer)
   task_server("task", timer)
   timer_server("timer", timer)
-  prize_server("prize")
+  prize_server("prize", timer)
 }
 
 shiny::shinyApp(ui, server)

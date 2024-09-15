@@ -84,12 +84,13 @@ update_iter_display <- function(value) {
 }
 
 display_prize <- function(joke) {
+  sanitized_joke <- stri_escape_unicode(joke)
   runjs(
     glue(
       "
       const jokeDiv = document.querySelector('.dad-joke-container');
       jokeDiv.classList.remove('hide');
-      jokeDiv.textContent='{joke}';
+      jokeDiv.textContent='{sanitized_joke}';
       "
     )
   )
@@ -105,3 +106,9 @@ hide_prize <- function() {
     )
   )
 }
+
+MODE_TITLE <- list(
+  pomodoro = "Focus",
+  short_break = "Short Break",
+  long_break = "Long Break"
+)

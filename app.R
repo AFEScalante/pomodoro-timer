@@ -3,7 +3,7 @@ library(httr)
 library(glue)
 library(shinyjs)
 
-# Loading Shiny modules
+# Load Shiny modules
 source("R/header.R")
 source("R/timer.R")
 source("R/task.R")
@@ -41,13 +41,13 @@ server <- function(input, output, session) {
   # Load the values from localStorage (triggered when session starts, see /storage.js)
   observeEvent(input$stored_values, {
     timer$load_values(input$stored_values)
+
     # Make stored values visible in default mode.
     timer$set_mode("pomodoro")
   }, ignoreNULL = TRUE)
 
-
   header_server("header", timer)
-  task_server("taks")
+  task_server("task", timer)
   timer_server("timer", timer)
   prize_server("prize")
 }

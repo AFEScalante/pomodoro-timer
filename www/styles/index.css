@@ -120,10 +120,6 @@
   margin-bottom: 0 !important;
 }
 
-.task-container .form-control {
-  text-align: center;
-}
-
 .iter-container {
   display: flex;
   justify-content: center;
@@ -135,12 +131,30 @@
   margin: 0 1rem 0 1rem;
 }
 
+#task-task {
+  text-overflow: ellipsis;
+  border-radius: 0;
+  border-bottom: dashed 2px;
+}
+
+#task-reset {
+  background-color: #FFA6F6;
+  border: solid 2px #000;
+  border-radius: 50%;
+  width: 3rem;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
 /* TIMER */
 .timer-container {
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  width: 50rem;
+  width: 35rem;
+  height: 15rem;
   position: relative;
   border-radius: 1rem;
   box-shadow: 1px 2px 0 1px #000;

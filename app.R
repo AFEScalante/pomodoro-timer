@@ -2,6 +2,7 @@ library(shiny)
 library(httr)
 library(glue)
 library(shinyjs)
+library(sass)
 
 # Loading Shiny modules
 source("R/header.R")

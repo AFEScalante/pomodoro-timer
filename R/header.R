@@ -4,7 +4,11 @@ header_ui <- function(id) {
   tags$header(
     class = "header",
     a(class = "pomodoro-timer", "Pomodoro Timer"),
-    actionButton(ns("edit_time"), icon("pencil"))
+    tags$img(
+      src = "images/editbutton.svg",
+      class = "editbutton",
+      onclick = set_input_value(ns("edit_time"))
+    )
   )
 }
 
@@ -27,7 +31,7 @@ header_server <- function(id, timer) {
                 clock_input(ns("long_break_duration"), "long break",
                  value = timer$long_break_time, color = timer$mode_colors$long_break)
               ),
-              actionButton(ns("close_modal"), label = "X", class = "close-btn")
+              tags$button(onclick = set_input_value(ns("close_modal")), "X", class = "close-btn")
             )
           ),
           easyClose = TRUE,

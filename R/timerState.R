@@ -13,6 +13,7 @@ TimerState <- R6Class(
     },
 
     set_time = function(time) {
+      if (time < 1) time <- 1
       self$initial_time <- time
       self$current_time <- time
     },
@@ -36,9 +37,9 @@ TimerState <- R6Class(
   public = list(
     initial_time = NULL,
     current_time = NULL,
-    pomodoro_time = 3,
-    short_break_time = 3,
-    long_break_time = 3,
+    pomodoro_time = 25 * 60,
+    short_break_time = 5 * 60,
+    long_break_time = 15 * 60,
     is_running = FALSE,
     pomodoro_iter = NULL,
     time_string = NULL,

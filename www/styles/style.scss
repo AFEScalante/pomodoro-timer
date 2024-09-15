@@ -126,11 +126,11 @@ body {
     }
 
     .task-desc {
-      text-overflow: ellipsis;
       border-radius: 0;
       border-bottom: dashed 2px;
-
+      
       input {
+        text-overflow: ellipsis;
         width: auto !important;
         font-size: $font-size-base;
         border: none;

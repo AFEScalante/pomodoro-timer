@@ -3,6 +3,7 @@ library(httr)
 library(glue)
 library(shinyjs)
 library(sass)
+library(rsconnect)
 
 # Loading Shiny modules
 source("R/header.R")

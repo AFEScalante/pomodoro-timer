@@ -47,6 +47,9 @@ header_server <- function(id, timer) {
         timer$short_break_time <- input$short_break_duration
         timer$long_break_time <- input$long_break_duration
 
+        # Send values to JS for localStorage
+        session$sendCustomMessage("update_current_state", timer$get_values_to_store())
+
         # Changing durations will stop and reset current timer (including progress).
         timer$set_mode(timer$current_mode)
         reset_claim_button()

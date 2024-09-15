@@ -5,7 +5,7 @@ task_ui <- function(id) {
     div(
       class = "task-container",
       span("I want to focus on "),
-      textInput(ns("task"), label = NULL, placeholder = "type your task here") |> 
+      textInput(ns("task"), label = NULL, placeholder = "type your task...") |> 
         tagAppendAttributes(class = "task-desc"),
       actionButton(ns("reset"), label = tags$img(src = "images/reset.svg", height = "14px"))
     ),
@@ -28,6 +28,8 @@ task_server <- function(id, timer) {
       # Clear iteration
       timer$pomodoro_iter(0)
       update_iter_display(0)
+
+      hide_prize()
     })
   })
 }

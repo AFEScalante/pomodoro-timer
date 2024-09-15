@@ -7,9 +7,14 @@ task_ui <- function(id) {
       span("I want to focus on "),
       div(
         class = "task-widgets",
-        textInput(ns("task"), label = NULL, placeholder = "type your task...") |> 
+        textInput(ns("task"), label = NULL, placeholder = "type your task...") |>
           tagAppendAttributes(class = "task-desc"),
-        actionButton(ns("reset"), label = tags$img(src = "images/reset.svg", height = "14px"))
+
+        tags$img(
+          src = "images/reset.svg",
+          class = "resetbutton",
+          onclick = set_input_value(ns("reset"))
+        )
       )
     ),
     div(

@@ -66,8 +66,38 @@ body {
   .editbutton {
     height: 3.5rem;
     width: 3.5rem;
-    border: none;
+    border: 3px solid $color-black;
+    border-radius: 50%; // This ensures the button remains circular
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 5px 5px 0 0 $color-black;
+    margin: 6px; // To avoid cutting out the shadow
+    position: relative;
+    overflow: hidden;
+    transition: all 0.1s ease;
+    z-index: 1;
+
+    // Center the SVG icon
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 50%;
+      width: 50%;
+    }
+
+    /* Hover effect */
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 0 $color-black;
+    }
+
+    /* Pressed effect */
+    &:active {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 0 $color-black;
+    }
   }
 }
 
@@ -90,26 +120,68 @@ body {
     .shiny-input-container:not(.shiny-input-container-inline) {
       width: auto !important;
     }
-  
+
     .form-group {
       margin-bottom: 0 !important;
     }
-  
+
     .task-desc {
+      text-overflow: ellipsis;
+      border-radius: 0;
+      border-bottom: dashed 2px;
+
       input {
         width: auto !important;
         font-size: $font-size-base;
         border: none;
         background: none;
       }
-  
+
       .form-control {
         box-shadow: none !important;
         -webkit-box-shadow: none !important;
         color: $color-tomato;
         font-weight: 700;
       }
-    }  
+    }
+  }
+
+  .resetbutton {
+    background-color: $color-darkpink;
+    height: 3rem;
+    width: 3rem;
+    border: 3px solid $color-black;
+    border-radius: 50%; // This ensures the button remains circular
+    cursor: pointer;
+    box-shadow: 5px 5px 0 0 $color-black;
+    margin: 6px; // To avoid cutting out the shadow
+    padding: 3px; // To have some space between icon and border
+    position: relative;
+    overflow: hidden;
+    transition: all 0.1s ease;
+    z-index: 1;
+
+    // Center the SVG icon
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 50%;
+      width: 50%;
+    }
+
+    /* Hover effect */
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 0 $color-black;
+    }
+
+    /* Pressed effect */
+    &:active {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 0 $color-black;
+    }
   }
 }
 
@@ -122,23 +194,6 @@ body {
   .iter-display {
     margin: 0 1rem 0 1rem;
   }
-}
-
-#task-task {
-  text-overflow: ellipsis;
-  border-radius: 0;
-  border-bottom: dashed 2px;
-}
-
-#task-reset {
-  background-color: $color-darkpink;
-  border: solid 2px $color-black;
-  border-radius: 50%;
-  width: 3rem;
-  display: flex;
-  height: 3rem;
-  justify-content: center;
-  align-items: center;
 }
 
 /* TIMER */
@@ -235,7 +290,7 @@ body {
 
   &:focus {
     outline: none; /* Remove default focus outline */
-  }  
+  }
 }
 
 /* After releasing (button comes up slightly) */
@@ -275,6 +330,7 @@ body {
   transition: all 0.1s ease;
   z-index: 1; /* Ensures text is on top */
   color: $color-black;
+  margin: 6px;
 
   /* Hover effect */
   &:hover {
@@ -323,11 +379,12 @@ body {
 
   .dad-joke-container {
     margin-top: 3rem;
+    margin-bottom: 5px;
     padding: 1.2rem;
     color: $color-white;
     border: 1px solid $color-black;
     background: $color-deepblue;
-    box-shadow: 1px 2px 0 1px $color-black;
+    box-shadow: 2px 2px 0 1px $color-black;
     font-family: monospace;
     max-width: 50rem;
     text-align: center;
@@ -336,7 +393,7 @@ body {
 
     &:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 0 $color-black;
+      box-shadow: 4px 4px 0 0 $color-black;
     }
   }
 }

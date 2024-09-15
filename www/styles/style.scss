@@ -70,11 +70,11 @@ body {
     border-radius: 50%; // This ensures the button remains circular
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 5px 5px 0 0 $color-black;
+    box-shadow: 2px 2px 0 0 $color-black;
     margin: 6px; // To avoid cutting out the shadow
     position: relative;
     overflow: hidden;
-    transition: all 0.1s ease;
+    transition: all 0.2s ease;
     z-index: 1;
 
     // Center the SVG icon
@@ -89,14 +89,14 @@ body {
 
     /* Hover effect */
     &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 0 $color-black;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 0 $color-black;
     }
 
     /* Pressed effect */
     &:active {
-      transform: translate(2px, 2px);
-      box-shadow: 3px 3px 0 0 $color-black;
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0 0 $color-black;
     }
   }
 }
@@ -153,12 +153,12 @@ body {
     border: 3px solid $color-black;
     border-radius: 50%; // This ensures the button remains circular
     cursor: pointer;
-    box-shadow: 5px 5px 0 0 $color-black;
+    box-shadow: 3px 3px 0 0 $color-black;
     margin: 6px; // To avoid cutting out the shadow
     padding: 3px; // To have some space between icon and border
     position: relative;
     overflow: hidden;
-    transition: all 0.1s ease;
+    transition: all 0.2s ease;
     z-index: 1;
 
     // Center the SVG icon
@@ -173,14 +173,14 @@ body {
 
     /* Hover effect */
     &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 0 $color-black;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 0 $color-black;
     }
 
     /* Pressed effect */
     &:active {
-      transform: translate(2px, 2px);
-      box-shadow: 3px 3px 0 0 $color-black;
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0 0 $color-black;
     }
   }
 }
@@ -244,27 +244,21 @@ body {
   background-color: $color-white;
   box-shadow: 6px 6px 0 0 $color-black;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   outline: none;
 
   &:hover {
-    box-shadow: 6px 6px 0 0 $color-black;
-    transform: translateY(-2px);
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
-    transform: translateY(6px); /* Moves down completely */
-    box-shadow: none; /* No shadow to mimic pressed button */
+  &.pressed {
+    transform: translate(6px, 6px);
+    outline: none;
+    box-shadow: none;
   }
 }
 
-/* After releasing (button comes up slightly) */
-.menu-btn.pressed {
-  transform: translateY(2px); /* Comes up a little after being released */
-  box-shadow: 4px 4px 0 0 $color-black; /* Shadow reappears */
-  outline: none;
-  box-shadow: none;
-}
 
 .timer-btn {
   font-size: 1.5rem;
@@ -275,30 +269,19 @@ body {
   background-color: $color-orange;
   box-shadow: 6px 6px 0 0 $color-black;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   outline: none; /* Removes the orange outline */
 
   &:hover {
-    box-shadow: 6px 6px 0 0 $color-black; /* Slight shadow */
-    transform: translateY(-2px); /* Subtle lift */
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
-    transform: translateY(6px); /* Moves down completely */
-    box-shadow: none; /* No shadow to mimic pressed button */
+  &.pressed {
+    transform: translate(6px, 6px);
+    outline: none;
+    box-shadow: none;
   }
-
-  &:focus {
-    outline: none; /* Remove default focus outline */
-  }
-}
-
-/* After releasing (button comes up slightly) */
-.timer-btn.pressed {
-  transform: translateY(2px); /* Comes up a little after being released */
-  box-shadow: 4px 4px 0 0 $color-black; /* Shadow reappears */
-  outline: none;
-  box-shadow: none;
 }
 
 /* Buttons */
@@ -327,8 +310,8 @@ body {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.1s ease;
-  z-index: 1; /* Ensures text is on top */
+  transition: all 0.2s ease;
+  z-index: 1;
   color: $color-black;
   margin: 6px;
 
@@ -340,8 +323,8 @@ body {
 
   /* Pressed effect */
   &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 3px 3px 0 0 $color-black;
+    transform: translate(5px, 5px);
+    box-shadow: 1px 1px 0 0 $color-black;
   }
 
   /* Progress bar */
@@ -384,12 +367,12 @@ body {
     color: $color-white;
     border: 1px solid $color-black;
     background: $color-deepblue;
-    box-shadow: 2px 2px 0 1px $color-black;
+    box-shadow: 2px 2px 0 0px $color-black;
     font-family: monospace;
     max-width: 50rem;
     text-align: center;
-    font-size: smaller;
-    transition: all 0.1s ease;
+    font-size: $font-size-xl;
+    transition: all 0.2s ease;
 
     &:hover {
       transform: translate(-2px, -2px);

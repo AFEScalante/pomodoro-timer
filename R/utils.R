@@ -106,3 +106,9 @@ hide_prize <- function() {
     )
   )
 }
+
+MODE_TITLE <- list(
+  pomodoro = "Focus",
+  short_break = "Short Break",
+  long_break = "Long Break"
+)

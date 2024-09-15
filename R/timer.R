@@ -95,10 +95,7 @@ timer_server <- function(id, timer) {
       progress <- timer$progress()
       if (timer$is_running) {
         if (timer$current_mode == "pomodoro") update_claim_progress(progress)
-        if (progress == 1) {
-          timer$handle_pomodoro_cycle()
-          session$sendCustomMessage("update_current_state", timer$get_values_to_store())
-        }
+        if (progress == 1) timer$handle_pomodoro_cycle()
       }
     })
   })

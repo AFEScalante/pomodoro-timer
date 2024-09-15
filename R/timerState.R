@@ -2,6 +2,37 @@ library(R6)
 
 TimerState <- R6Class(
   "TimerState",
+  private = list(
+    increment_pomodoro = function() {
+      self$pomodoro_iter(self$pomodoro_iter() + 1)
+      enable_claim_button()
+    },
+
+    determine_break_type = function() {
+      ifelse(self$pomodoro_iter() %% 4 == 0, "long_break", "short_break")
+    },
+
+    set_time = function(time) {
+      self$initial_time <- time
+      self$current_time <- time
+    },
+
+    calculate_progress = function() {
+      1 - (self$current_time / self$initial_time)
+    },
+
+    format_time = function(time) {
+      mins <- floor(time / 60)
+      secs <- time %% 60
+      sprintf("%02d:%02d", mins, secs)
+    },
+
+    update_reactive_fields = function() {
+      self$time_string(private$format_time(self$current_time))
+      self$progress(private$calculate_progress())
+    }
+  ),
+
   public = list(
     initial_time = NULL,
     current_time = NULL,
@@ -15,6 +46,7 @@ TimerState <- R6Class(
     current_mode = "pomodoro",
     next_timer = NULL,
     timer_ended = NULL,
+    values_loaded = NULL,
     task_description  = NULL,
     mode_colors = list(
       pomodoro = "#ff5052",
@@ -25,38 +57,28 @@ TimerState <- R6Class(
     initialize = function() {
       self$initial_time <- self$pomodoro_time
       self$current_time <- self$pomodoro_time
-      self$time_string <- reactiveVal(self$format_time(self$pomodoro_time))
+      self$time_string <- reactiveVal(private$format_time(self$pomodoro_time))
       self$progress <- reactiveVal(0)
       self$pomodoro_iter <- reactiveVal(0)
       self$timer_ended <- reactiveVal(0)
+      self$values_loaded <- reactiveVal(0)
     },
 
     reset = function() {
       self$current_time <- self$initial_time
       self$is_running <- FALSE
-      self$update_reactive_fields()
+      private$update_reactive_fields()
     },
 
     tick = function() {
       if (self$is_running && self$current_time > 0) {
         self$current_time <- self$current_time - 1
-        self$update_reactive_fields()
+        private$update_reactive_fields()
       }
     },
 
     toggle_running = function() {
       self$is_running <- !self$is_running
-    },
-
-    update_reactive_fields = function() {
-      self$time_string(self$format_time(self$current_time))
-      self$progress(self$calculate_progress())
-    },
-
-    format_time = function(time) {
-      mins <- floor(time / 60)
-      secs <- time %% 60
-      sprintf("%02d:%02d", mins, secs)
     },
 
     set_mode = function(mode) {
@@ -81,16 +103,15 @@ TimerState <- R6Class(
       ))
 
       self$current_mode <- mode
-      self$set_time(mode_time)
+      private$set_time(mode_time)
       self$reset()
     },
 
     handle_pomodoro_cycle = function() {
       if (self$current_mode == "pomodoro") {
-        self$increment_pomodoro()
+        private$increment_pomodoro()
 
-        break_type <- self$determine_break_type()
-        self$next_timer <- break_type
+        self$next_timer <- private$determine_break_type()
       } else if (grepl("break", self$current_mode)) {
         self$next_timer <- "pomodoro"
       }
@@ -99,32 +120,9 @@ TimerState <- R6Class(
       self$is_running <- FALSE
     },
 
-    increment_pomodoro = function() {
-      self$pomodoro_iter(self$pomodoro_iter() + 1)
-      enable_claim_button()
-      update_iter_display(self$pomodoro_iter())
-    },
-
-    determine_break_type = function() {
-      ifelse(self$pomodoro_iter() %% 4 == 0, "long_break", "short_break")
-    },
-
-    set_time = function(time) {
-      self$initial_time <- time
-      self$current_time <- time
-    },
-
     set_task_description = function(value) {
       if (is.null(value)) return()
       self$task_description <- value
-    },
-
-    calculate_progress = function() {
-      1 - (self$current_time / self$initial_time)
-    },
-
-    update_task_description = function(session) {
-      updateTextInput(session, inputId = "task-task", value = self$task_description)
     },
 
     load_values = function(stored_values) {
@@ -133,6 +131,8 @@ TimerState <- R6Class(
       self$long_break_time <- stored_values$long_break_time
       self$task_description <- stored_values$task_description
       self$pomodoro_iter(stored_values$pomodoro_iter)
+
+      self$values_loaded(self$values_loaded() + 1)
     },
 
     get_values_to_store = function() {

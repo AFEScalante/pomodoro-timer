@@ -4,7 +4,7 @@ library(glue)
 library(shinyjs)
 library(sass)
 
-# Loading Shiny modules
+# Load Shiny modules
 source("R/header.R")
 source("R/timer.R")
 source("R/task.R")
@@ -45,10 +45,7 @@ server <- function(input, output, session) {
 
     # Make stored values visible in default mode.
     timer$set_mode("pomodoro")
-    timer$update_task_description(session)
-    update_iter_display(timer$pomodoro_iter())
   }, ignoreNULL = TRUE)
-
 
   header_server("header", timer)
   task_server("task", timer)

@@ -3,6 +3,7 @@ library(httr)
 library(glue)
 library(shinyjs)
 library(sass)
+library(stringi)
 
 # Load Shiny modules
 source("R/header.R")
@@ -50,7 +51,7 @@ server <- function(input, output, session) {
   header_server("header", timer)
   task_server("task", timer)
   timer_server("timer", timer)
-  prize_server("prize")
+  prize_server("prize", timer)
 }
 
 shiny::shinyApp(ui, server)

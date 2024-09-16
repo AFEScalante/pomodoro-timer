@@ -21,6 +21,7 @@ header_server <- function(id, timer) {
         modalDialog(
           title = NULL,
           tagList(
+            tags$button(onclick = set_input_value(ns("close_modal")), "x", class = "close-btn"),
             div(
               class = "clocks",
               clock_input(ns("pomodoro_duration"), "pomodoro",
@@ -30,7 +31,7 @@ header_server <- function(id, timer) {
               clock_input(ns("long_break_duration"), "long break",
                 value = timer$long_break_time, color = timer$mode_colors$long_break)
             ),
-            tags$button(onclick = set_input_value(ns("close_modal")), "x", class = "close-btn")
+            tags$button(id = ns("confirm"), onclick = set_input_value(ns("confirm")), "OK", class = "confirm-btn")
           ),
           easyClose = TRUE,
           fade = FALSE,
@@ -39,24 +40,20 @@ header_server <- function(id, timer) {
       )
     })
 
-    observeEvent(
-      c(
-        input$pomodoro_duration,
-        input$short_break_duration,
-        input$long_break_duration
-      ), {
-        timer$pomodoro_time <- input$pomodoro_duration
-        timer$short_break_time <- input$short_break_duration
-        timer$long_break_time <- input$long_break_duration
+    observeEvent(input$confirm, {
+      timer$pomodoro_time <- input$pomodoro_duration
+      timer$short_break_time <- input$short_break_duration
+      timer$long_break_time <- input$long_break_duration
 
-        # Send values to JS for localStorage
-        session$sendCustomMessage("update_current_state", timer$get_values_to_store())
+      # Send values to JS for localStorage
+      session$sendCustomMessage("update_current_state", timer$get_values_to_store())
 
-        # Changing durations will stop and reset current timer (including progress).
-        timer$set_mode(timer$current_mode)
-        reset_claim_button()
-      }
-    )
+      # Changing durations will stop and reset current timer (including progress).
+      timer$set_mode(timer$current_mode)
+      reset_claim_button()
+
+      removeModal()
+    })
 
     observeEvent(input$close_modal, removeModal())
   })

@@ -45,7 +45,7 @@ task_server <- function(id, timer) {
     observeEvent(input$reset, {
       updateTextInput(session, inputId = "task", value = "")
       # Select pomodoro mode
-      set_pressed_button("timer-pomodoro", class = "menu-btn")
+      runjs(set_pressed_button("timer-pomodoro", class = "menu-btn"))
       timer$set_mode("pomodoro")
 
       # Clear iteration

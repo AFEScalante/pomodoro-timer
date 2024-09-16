@@ -5,6 +5,7 @@ library(shinyjs)
 library(sass)
 library(rsconnect)
 library(stringi)
+library(stringr)
 library(shinytitle)
 
 # Load Shiny modules

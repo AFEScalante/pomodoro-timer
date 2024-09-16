@@ -252,7 +252,8 @@ body {
     box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
+  &:active,
+  &.pressing {
     transform: translate(6px, 6px);
     outline: none;
     box-shadow: none;
@@ -283,7 +284,8 @@ body {
     box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &:active {
+  &:active,
+  &.pressing {
     transform: translate(6px, 6px);
     outline: none;
     box-shadow: none;

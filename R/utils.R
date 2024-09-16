@@ -1,14 +1,28 @@
+neo_button <- function(input_id, content = "", class = NULL) {
+  if (str_detect(class, "timer-btn")) btn_class <- "timer-btn"
+  if (str_detect(class, "menu-btn")) btn_class <- "menu-btn"
+
+  tags$button(
+    id = input_id,
+    content,
+    class = class,
+    onmousedown = "this.classList.add('pressing')",
+    onmouseout = "this.classList.remove('pressing')",
+    onmouseup = set_pressed_button(input_id, btn_class)
+  )
+}
+
 set_input_value <- function(id, value = 1) {
   glue("Shiny.setInputValue('{id}', '{value}', {{priority: 'event'}})")
 }
 
 set_pressed_button <- function(input_id, class = "timer-btn") {
-  runjs(
-    glue("
-      $('.{class}').removeClass('pressed');
-      $('#{input_id}').addClass('pressed');
-    ")
-  )
+  glue("
+    $('.{class}').removeClass('pressed');
+    $('#{input_id}').removeClass('pressing');
+    $('#{input_id}').addClass('pressed');
+    Shiny.setInputValue('{input_id}', '1', {{priority: 'event'}});
+  ")
 }
 
 reset_claim_button <- function() {

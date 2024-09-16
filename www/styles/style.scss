@@ -400,8 +400,13 @@ body {
 }
 
 /* MODAL */
+.modal {
+ &.in {
+  display: grid !important;
+  justify-content: center;
+ }
+}
 .modal-dialog {
-  text-align: -webkit-center;
   width: fit-content;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
@@ -424,6 +429,10 @@ body {
     .in & {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .modal-body {
+      text-align: center;
     }
 
     .close-btn {
@@ -519,10 +528,6 @@ body {
       }
     }
   }
-}
-
-.in .modal-dialog {
-  opacity: 1;
 }
 
 /* MEDIA QUERIES */

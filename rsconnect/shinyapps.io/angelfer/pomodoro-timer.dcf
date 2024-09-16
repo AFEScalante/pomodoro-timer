@@ -1,0 +1,10 @@
+name: pomodoro-timer
+title:
+username: angelfer
+account: angelfer
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12715089
+bundleId: 9106061
+url: https://angelfer.shinyapps.io/pomodoro-timer/
+version: 1

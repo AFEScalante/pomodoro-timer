@@ -8,7 +8,10 @@ neo_button <- function(input_id, content = "", class = NULL) {
     class = class,
     onmousedown = "this.classList.add('pressing')",
     onmouseout = "this.classList.remove('pressing')",
-    onmouseup = set_pressed_button(input_id, btn_class)
+    onmouseup = set_pressed_button(input_id, btn_class),
+    # Add touch events for mobile
+    ontouchstart = "this.classList.add('pressing')",
+    ontouchend = set_pressed_button(input_id, btn_class)
   )
 }
 

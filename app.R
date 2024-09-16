@@ -3,6 +3,7 @@ library(httr)
 library(glue)
 library(shinyjs)
 library(sass)
+library(rsconnect)
 library(stringi)
 library(shinytitle)
 

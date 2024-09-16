@@ -259,8 +259,8 @@ body {
   }
 
   &.pressed {
-    transform: translate(4.5px, 4.5px);
-    box-shadow: 1.5px 1.5px 0 0 $color-black;
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 0 $color-black;
     outline: none;
   }
 }
@@ -290,8 +290,8 @@ body {
   }
 
   &.pressed {
-    transform: translate(4.5px, 4.5px);
-    box-shadow: 1.5px 1.5px 0 0 $color-black;
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 0 $color-black;
     outline: none;
   }
 }

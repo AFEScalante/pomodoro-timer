@@ -128,7 +128,7 @@ body {
     .task-desc {
       border-radius: 0;
       border-bottom: dashed 2px;
-      
+
       input {
         text-overflow: ellipsis;
         width: auto !important;
@@ -252,10 +252,16 @@ body {
     box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &.pressed {
+  &:active {
     transform: translate(6px, 6px);
     outline: none;
     box-shadow: none;
+  }
+
+  &.pressed {
+    transform: translate(4.5px, 4.5px);
+    box-shadow: 1.5px 1.5px 0 0 $color-black;
+    outline: none;
   }
 }
 
@@ -277,10 +283,16 @@ body {
     box-shadow: 7.5px 7.5px 0 0 $color-black;
   }
 
-  &.pressed {
+  &:active {
     transform: translate(6px, 6px);
     outline: none;
     box-shadow: none;
+  }
+
+  &.pressed {
+    transform: translate(4.5px, 4.5px);
+    box-shadow: 1.5px 1.5px 0 0 $color-black;
+    outline: none;
   }
 }
 
@@ -390,6 +402,13 @@ body {
 /* MODAL */
 .modal-dialog {
   text-align: -webkit-center;
+  width: fit-content;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  .in & {
+    opacity: 1;
+  }
 
   .modal-content {
     position: relative;
@@ -397,8 +416,15 @@ body {
     background-color: $color-white;
     box-shadow: 10px 8px rgba(0, 0, 0, 0.75);
     border-radius: 12px;
-    transition: all 0.3s ease-in-out;
     width: fit-content;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    .in & {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .close-btn {
       position: absolute;
@@ -452,6 +478,7 @@ body {
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
               cursor: pointer;
+              height: auto;
             }
           }
 
@@ -461,7 +488,41 @@ body {
         }
       }
     }
+
+    .confirm-btn {
+      background-color: rgba(220, 220, 220, 0.7);
+      width: 7rem;
+      border: 3px solid $color-black;
+      padding: 1rem;
+      box-shadow: 5px 5px 0 0 $color-black;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 1;
+      color: $color-black;
+      margin: 6px;
+
+      /* Hover effect */
+      &:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 0 $color-black;
+      }
+
+      /* Pressed effect */
+      &:active {
+        transform: translate(5px, 5px);
+        box-shadow: 1px 1px 0 0 $color-black;
+      }
+    }
   }
+}
+
+.in .modal-dialog {
+  opacity: 1;
 }
 
 /* MEDIA QUERIES */
